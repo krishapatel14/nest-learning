@@ -20,4 +20,5 @@ export class AppService {
   getArray():any[]{
     return  this.users;
   }
+
 }

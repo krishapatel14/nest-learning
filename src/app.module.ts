@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config/dist';
 // import { LoggerMiddleWare } from './products/logger.middleware';
 import { logger } from './products/logger.middleware';
 import { ProductsController } from './products/products.controller';
+import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
@@ -17,7 +18,8 @@ import { ProductsController } from './products/products.controller';
     MongooseModule.forRoot('mongodb://127.0.0.1/nest-learning'),
     ProductsModule,
     CategoryModule,
-    AuthModule
+    AuthModule,
+    MulterModule.register({ dest: "./uploads" }),
   ],
   controllers: [AppController],
   providers: [AppService],

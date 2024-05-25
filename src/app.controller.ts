@@ -1,5 +1,7 @@
 import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
+import { UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller()
 export class AppController {
@@ -45,8 +47,15 @@ export class AppController {
         data:this.appService.users.find(user=>user.salary>salary)
 
       });
-
     }
+
+    @Post("/file")
+    @UseInterceptors(FileInterceptor("file"))
+    handleUpload(@UploadedFile() file:Express.Multer.File){
+      console.log(file);
+    //cloudinary upload
+      return file;
+  }
   }
  
 
